@@ -11,8 +11,13 @@
     },
     "devDependencies": {
         "axios": "^0.25",
+        "daisyui": "^5.0.6",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "postcss": "^8.5.3"
+    },
+    "dependencies": {
+        "@tailwindcss/postcss": "^4.0.14",
+        "tailwindcss": "^4.0.14"
     }
 }
