@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Login;
+use App\Http\Livewire\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,8 @@ use App\Http\Livewire\Login;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 Route::get('/', Login::class)->middleware('guest')->name("login");
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', Dashboard::class)->name("dashboard");
+});
