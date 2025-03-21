@@ -63,6 +63,36 @@ return [
             ]) : [],
         ],
 
+        'infosys' => [
+            'driver' => 'mysql',
+            'host' => env('DB_INFOSYS_HOST', '127.0.0.1'),
+            'port' => env('DB_INFOSYS_PORT', '3306'),
+            'database' => env('DB_INFOSYS_DATABASE', 'forge'),
+            'username' => env('DB_INFOSYS_USERNAME', 'forge'),
+            'password' => env('DB_INFOSYS_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
+        'icteiis' => [
+            'driver' => 'mysql',
+            'host' => env('DB_ICTEIIS_HOST', '127.0.0.1'),
+            'port' => env('DB_ICTEIIS_PORT', '3306'),
+            'database' => env('DB_ICTEIIS_DATABASE', 'forge'),
+            'username' => env('DB_ICTEIIS_USERNAME', 'forge'),
+            'password' => env('DB_ICTEIIS_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -123,7 +153,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
