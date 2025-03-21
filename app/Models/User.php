@@ -12,15 +12,20 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $primaryKey = 'user_id'; // custom primary key
+    protected $connection = 'icteiis';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'employee_id',
+        'username',
         'password',
+        'status',
+        'role',
     ];
 
     /**
@@ -39,6 +44,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'created_at' => 'date',
+        'updated_at' => 'date',
     ];
 }
