@@ -1,0 +1,8 @@
+composer install (to install composer packages)
+npm install (to install npm packages)
+
+generate .env file (to set configuration variables)
+
+php artisan migrate --database=icteiis (to create tables)
+
+php artisan db:seed --class=UserSeeder (to generate default admin account)
