@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
     {
         if (!User::whereUsername("icteiis-admin")->exists()) {
             User::create([
+                'employee_id' => 178,
                 'username' => 'icteiis-admin',
                 'password' => Hash::make('password'),
                 'status' => 1,
