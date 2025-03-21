@@ -19,4 +19,4 @@ use App\Http\Livewire\Login;
 // });
 
 
-Route::get('/', Login::class);
+Route::get('/', Login::class)->middleware('guest')->name("login");
