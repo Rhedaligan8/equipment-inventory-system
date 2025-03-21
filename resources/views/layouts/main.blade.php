@@ -9,11 +9,11 @@
     @livewireStyles
 </head>
 
-<body>
+<body class="font-nunito antialiased">
     {{-- Main Content --}}
-    <div class="min-h-screen">
+    <main class="h-screen">
         {{ $slot }}
-    </div>
+    </main>
 
     @stack('scripts') {{-- For additional scripts --}}
     @livewireScripts
