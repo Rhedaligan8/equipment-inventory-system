@@ -5,4 +5,4 @@ generate .env file (to set configuration variables)
 
 php artisan migrate --database=icteiis (to create tables)
 
-php artisan db:seed --class=UserSeeder (to generate default admin account)
+php artisan db:seed --class=UserSeeder (to generate default admin account, please put the initial admin account employee id)
