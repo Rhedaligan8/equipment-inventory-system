@@ -9,11 +9,15 @@
     @livewireStyles
 </head>
 
-<body class="font-nunito antialiased">
+<body class="font-nunito antialiased flex bg-base-300">
     {{-- Main Content --}}
-    <main class="h-screen">
-        {{ $slot }}
-    </main>
+    <livewire:sidebar />
+    <div class="grow">
+        <livewire:header />
+        <main class="h-screen">
+            {{ $slot }}
+        </main>
+    </div>
 
     @stack('scripts') {{-- For additional scripts --}}
     @livewireScripts
