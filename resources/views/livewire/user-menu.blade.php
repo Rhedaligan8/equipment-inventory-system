@@ -32,14 +32,10 @@
                         @endif
                     </div>
                 </div>
-                <div class="divider"></div>
+                <div class="divider my-1"></div>
                 <!-- buttons -->
                 <div class="flex flex-col">
-                    <a href="" class="btn btn-ghost font-bold text-left justify-start">
-                        <i class="bi bi-person-fill-gear"></i>
-                        Account Settings
-                    </a>
-                    <button wire:click="logout()" class="btn  btn-ghost font-bold text-left justify-start">
+                    <button wire:click="logout()" class="btn btn-ghost font-bold text-left justify-start gap-2">
                         <i class="bi bi-box-arrow-left"></i>
                         Logout
                     </button>
