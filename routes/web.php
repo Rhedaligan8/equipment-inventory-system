@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Dashboard;
+use App\Http\Livewire\Users;
+use App\Http\Livewire\Logs;
 
 /*
 |--------------------------------------------------------------------------

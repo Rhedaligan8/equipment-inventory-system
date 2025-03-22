@@ -1,4 +1,4 @@
-<div wire:init="fetchUserEmployeeInformation()" class="flex gap-2 items-center">
+<div class="flex gap-2 items-center">
     @if (!$user_fullname)
         <div class="skeleton h-5 w-52"></div>
         <div class="skeleton h-5 w-16"></div>
@@ -14,7 +14,7 @@
                 <div class="flex gap-2 items-center">
                     <!-- circle -->
                     <div class="avatar avatar-placeholder shrink-0">
-                        <div class="bg-accent text-neutral-content w-12 rounded-full">
+                        <div class="bg-accent text-neutral-content w-12 rounded-full" wire:ignore>
                             <span class="text-lg font-bold">UI</span>
                         </div>
                     </div>
