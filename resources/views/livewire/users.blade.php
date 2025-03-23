@@ -1,6 +1,6 @@
 <div class="h-full">
     <div class="overflow-x-auto flex flex-col h-full">
-        <button class="btn btn-sm btn-primary text-base-100 self-end mb-2">
+        <button x-on:click="activeTab = 'createUser'" class="btn btn-sm btn-primary text-base-100 self-end mb-2">
             <i class="bi bi-person-fill-add items-center"></i>
             ADD USER</button>
         <!-- header -->
