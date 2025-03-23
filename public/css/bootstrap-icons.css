@@ -23,7 +23,9 @@ url("../fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wo
   line-height: 1;
   vertical-align: -.125em;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+.bi{
   font-size: 1.5rem;
 }
 
