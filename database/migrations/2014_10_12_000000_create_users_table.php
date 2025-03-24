@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('user_id');
-            $table->integer('employee_id');
+            $table->integer('employee_id')->unique();
             $table->string('username', 50)->unique();
             $table->string('password');
             $table->tinyInteger('status')->default(0);
@@ -30,6 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        // Schema::dropIfExists('users');
+        Schema::dropIfExists('users');
     }
 };
