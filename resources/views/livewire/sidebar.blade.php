@@ -19,14 +19,16 @@
             class="btn btn-ghost text-start justify-start gap-2 font-bold">
             <i class="bi bi-geo-alt-fill"></i> Locations
         </button>
-        <button :class="activeTab === 'users' && 'bg-primary text-base-100'" @click="activeTab = 'users'"
-            class="btn btn-ghost text-start justify-start gap-2 font-bold">
-            <i class="bi bi-people-fill"></i> Users
-        </button>
-        <button :class="activeTab === 'logs' && 'bg-primary text-base-100'" @click="activeTab = 'logs'"
-            class="btn btn-ghost text-start justify-start gap-2 font-bold">
-            <i class="bi bi-card-list"></i> Logs
-        </button>
+        @if(Auth::user()->role === 1)
+            <button :class="activeTab === 'users' && 'bg-primary text-base-100'" @click="activeTab = 'users'"
+                class="btn btn-ghost text-start justify-start gap-2 font-bold">
+                <i class="bi bi-people-fill"></i> Users
+            </button>
+            <button :class="activeTab === 'logs' && 'bg-primary text-base-100'" @click="activeTab = 'logs'"
+                class="btn btn-ghost text-start justify-start gap-2 font-bold">
+                <i class="bi bi-card-list"></i> Logs
+            </button>
+        @endif
         <button :class="activeTab === 'account' && 'bg-primary text-base-100'" @click="activeTab = 'account'"
             class="btn btn-ghost text-start justify-start gap-2 font-bold">
             <i class="bi bi-person-fill-gear"></i> Account Settings
