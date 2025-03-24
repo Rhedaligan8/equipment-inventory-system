@@ -25,9 +25,6 @@ class Location extends Model
         'updated_at' => 'datetime',
     ];
 
-    /**
-     * Relationship: A log belongs to a user
-     */
     public function equipment()
     {
         // return $this->belongsTo(User::class, 'user_id', 'user_id');

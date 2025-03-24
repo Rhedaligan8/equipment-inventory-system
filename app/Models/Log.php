@@ -27,9 +27,6 @@ class Log extends Model
         'created_at' => 'datetime',
     ];
 
-    /**
-     * Relationship: A log belongs to a user
-     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
