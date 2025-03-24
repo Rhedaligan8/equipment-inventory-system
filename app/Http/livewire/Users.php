@@ -10,23 +10,23 @@ class Users extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['searchEmployeeById', 'searchUnitById'];
+    protected $listeners = ['searchEmployeeById', 'searchUnitById', 'updateUserTable'];
 
     public $perPage = 10;
     public $username = "";
     public $orderDirection = "desc";
     public $orderBy = "created_at";
-    public $roleFilter = "-1";
-    public $statusFilter = "-1";
+    public $roleFilter = "";
+    public $statusFilter = "";
 
     public $employee_id = "";
     public $unit_id = "";
 
     public function resetFilter()
     {
-        if ($this->roleFilter != "-1" || $this->statusFilter != "-1") {
-            $this->roleFilter = "-1";
-            $this->statusFilter = "-1";
+        if ($this->roleFilter != "" || $this->statusFilter != "") {
+            $this->roleFilter = "";
+            $this->statusFilter = "";
         }
     }
 
@@ -37,6 +37,11 @@ class Users extends Component
     public function searchUnitById($unit_id)
     {
         $this->unit_id = $unit_id;
+    }
+
+    public function updateUserTable()
+    {
+        $this->emit('$refresh');
     }
 
     public function toggleOrder($orderBy)
@@ -73,10 +78,10 @@ class Users extends Component
                         $query->where('users.username', 'like', $this->username . '%');
                     })
                     ->when($this->statusFilter !== '', function ($query) {
-                        $query->where('users.status', '!=', $this->statusFilter);
+                        $query->where('users.status', '=', $this->statusFilter);
                     })
                     ->when($this->roleFilter !== '', function ($query) {
-                        $query->where('users.role', '!=', $this->roleFilter);
+                        $query->where('users.role', '=', $this->roleFilter);
                     })
                     ->orderBy($this->orderBy, $this->orderDirection)
                     ->paginate($this->perPage, ['*'], "usersPage")
