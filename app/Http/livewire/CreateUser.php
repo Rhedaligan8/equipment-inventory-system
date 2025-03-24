@@ -71,6 +71,7 @@ class CreateUser extends Component
         $this->role = 0;
         $this->status = 1;
         $this->employee_id = '';
+        $this->resetValidation();
         $this->fetchEmployees();
     }
 
