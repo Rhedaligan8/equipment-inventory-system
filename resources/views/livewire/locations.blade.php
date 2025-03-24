@@ -57,11 +57,11 @@
                         <th>REMARKS</th>
                         <th>STATUS</th>
                         <th>
-                            <button @class(['text-accent' => $orderBy == 'created_at', 'hover:underline cursor-pointer hover:text-accent'])
-                                wire:click="toggleOrder('created_at')">UPDATED AT
-                                @if($orderBy == 'created_at' && $orderDirection == 'asc')
+                            <button @class(['text-accent' => $orderBy == 'updated_at', 'hover:underline cursor-pointer hover:text-accent'])
+                                wire:click="toggleOrder('updated_at')">UPDATED AT
+                                @if($orderBy == 'updated_at' && $orderDirection == 'asc')
                                     <i class="bi bi-caret-up-fill" style="font-size: 1rem;"></i>
-                                @elseif($orderBy == 'created_at' && $orderDirection == 'desc')
+                                @elseif($orderBy == 'updated_at' && $orderDirection == 'desc')
                                     <i class="bi bi-caret-down-fill" style="font-size: 1rem;"></i>
                                 @endif
                             </button>
