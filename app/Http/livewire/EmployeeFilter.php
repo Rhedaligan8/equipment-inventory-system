@@ -14,8 +14,8 @@ class EmployeeFilter extends Component
 
     public function fetchEmployees()
     {
-        $this->employees = Employee::selectRaw("*, CONCAT(firstname, ' ', lastname) as full_name")
-            ->whereRaw("CONCAT(firstname, ' ', lastname) LIKE ?", [$this->employee_name . '%'])
+        $this->employees = Employee::selectRaw("*, CONCAT(lastname, ' ', firstname) as full_name")
+            ->whereRaw("CONCAT(lastname, ' ', firstname) LIKE ?", [$this->employee_name . '%'])
             ->limit(20)
             ->get();
     }
