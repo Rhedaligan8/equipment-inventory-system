@@ -38,12 +38,12 @@ class EquipmentTypes extends Component
             $this->orderDirection = "desc";
         }
         $this->orderBy = $orderBy;
-        $this->resetPage('locationsPage');
+        $this->resetPage('equipmentTypesPage');
     }
 
     public function updated()
     {
-        $this->resetPage('locationsPage');
+        $this->resetPage('equipmentTypesPage');
     }
 
     public function render()
@@ -57,7 +57,7 @@ class EquipmentTypes extends Component
                         $query->where('status', $this->statusFilter);
                     })
                     ->orderBy($this->orderBy, $this->orderDirection)
-                    ->paginate($this->perPage, ['*'], "locationsPage")
+                    ->paginate($this->perPage, ['*'], "equipmentTypesPage")
             ]
         )->layout("layouts.dashboard");
     }

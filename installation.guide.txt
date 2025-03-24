@@ -5,6 +5,17 @@ generate .env file (to set configuration variables)
 
 php artisan migrate --database=icteiis (to create tables)
 
+php artisan migrate --path=database/migrations/2014_10_12_000000_create_users_table.php --database=icteiis
 php artisan db:seed --class=UserSeeder (to generate default admin account, please put the initial admin account employee id)
 
+php artisan migrate --path=database/migrations/2025_03_22_133034_logs.php --database=icteiis
 php artisan db:seed --class=LogSeeder
+
+php artisan migrate --path=database/migrations/2025_03_24_184501_locations.php --database=icteiis
+php artisan db:seed --class=LocationSeeder
+
+php artisan migrate --path=database/migrations/2025_03_24_203318_equipment_types.php --database=icteiis
+php artisan db:seed --class=EquipmentTypeSeeder
+
+php artisan migrate --path=database/migrations/2025_03_24_213452_equipments.php --database=icteiis
+php artisan db:seed --class=EquipmentSeeder

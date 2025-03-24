@@ -2,7 +2,7 @@
     <div class="overflow-x-auto flex flex-col h-full">
     <button x-on:click="activeTab = 'addEquipmentType'"
         class="btn btn-sm btn-primary text-base-100 self-end mb-2">
-        <i class="bi bi-pin-map-fill"></i>
+        <i class="bi bi-box-fill"></i></i>
         ADD EQUIPMENT TYPE</button>
         <!-- header -->
         <div class="mb-4 flex justify-between">
@@ -69,6 +69,9 @@
                         <th></th>
                     </tr>
                 </thead>
+                @if(!$equipment_types->total())
+                <h1 class="font-inter font-bold text-center my-4 text-xl">NO DATA</h1>
+                @endif
                 @if ($equipment_types->total())
                     <tbody>
                         @foreach ($equipment_types as $equipment_type)
@@ -91,9 +94,6 @@
                 @endif
             </table>
             </div>
-            @if(!$equipment_types->total())
-                <h1 class="font-inter font-bold text-center my-4 text-xl">NO DATA</h1>
-            @endif
         </div>
         <!-- table footer -->
         @if($equipment_types->total())
