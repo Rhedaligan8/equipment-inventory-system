@@ -29,10 +29,10 @@ class AddLocation extends Component
     {
 
         // force logout user if the role is not admin
-        // if (Gate::denies('access')) {
-        //     Auth::logout();
-        //     return redirect()->route("login");
-        // }
+        if (Gate::denies('access')) {
+            Auth::logout();
+            return redirect()->route("login");
+        }
 
         $this->name = trim($this->name);
         $this->remarks = trim($this->remarks);
