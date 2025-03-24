@@ -15,7 +15,7 @@
             <div>
                 <label class="block" for="role">Remarks</label>
                 <textarea wire:model.defer="remarks" placeholder="Remarks"
-                    class="textarea focus:ring-0 focus:outline-none w-full" placeholder="Bio"></textarea>
+                    class="textarea focus:ring-0 focus:outline-none w-full"></textarea>
             </div>
             <div>
                 <label for="status">Status</label>
