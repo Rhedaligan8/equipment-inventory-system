@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Employee;
+use App\Models\Log;
 
 class User extends Authenticatable
 {
@@ -45,12 +45,17 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => 'date',
-        'updated_at' => 'date',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     public function employee()
     {
         return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
+    }
+
+    public function log()
+    {
+        return $this->hasMany(Log::class, 'user_id', 'user_id');
     }
 }
