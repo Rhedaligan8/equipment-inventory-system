@@ -1,6 +1,6 @@
 <div x-data="{open: false}" wire:init="fetchDivisionSections()">
     <div class="flex flex-col w-full">
-        <input type="search" placeholder="Search employee last name" wire:model.debounce.500ms="division_section"
+        <input type="search" placeholder="Search division/section" wire:model.debounce.500ms="division_section"
             @focus="open = true" @blur="setTimeout(() => open = false, 100)"
             class="input input-sm focus:ring-0 focus:outline-none w-full" />
         <div x-show="open" class="dropdown dropdown-open">
