@@ -2,7 +2,7 @@
     <div class="overflow-x-auto flex flex-col h-full">
         <button x-on:click="activeTab = 'addEquipmentType'" class="btn btn-sm btn-primary text-base-100 self-end mb-2">
             <i class="bi bi-pc-display"></i>
-            ADD EQUIPMENT TYPE</button>
+            ADD EQUIPMENT</button>
         <!-- header -->
         <div class="mb-4 flex justify-between">
             <div class="flex gap-1 items-center">
