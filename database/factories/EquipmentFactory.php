@@ -21,11 +21,11 @@ class EquipmentFactory extends Factory
             'brand' => $this->faker->company,
             'model' => $this->faker->word,
             'acquired_date' => $this->faker->date,
-            'location_id' => 2,
+            'location_id' => 20,
             'serial_number' => $this->faker->unique()->bothify('SN-#####'),
             'mr_no' => $this->faker->optional()->bothify('MR-#####'),
-            'person_accountable_id' => 1,
-            'person_accountable_current_unit_id' => 44,
+            'person_accountable_id' => 178,
+            'person_accountable_current_unit_id' => 14,
             'remarks' => $this->faker->optional()->sentence,
         ];
     }

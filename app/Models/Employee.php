@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Unit;
 use App\Models\Division;
+use App\Models\Equipment;
 
 class Employee extends Model
 {
@@ -28,5 +29,10 @@ class Employee extends Model
     public function division()
     {
         return $this->belongsTo(Division::class, 'division_division_id', 'division_id');
+    }
+
+    public function equipment()
+    {
+        return $this->hasMany(Equipment::class, 'person_accountable_id', 'employee_id');
     }
 }

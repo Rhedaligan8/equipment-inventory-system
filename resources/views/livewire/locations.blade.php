@@ -84,7 +84,12 @@
                                     @endif
                                 </td>
                                 <td>{{ $location-> updated_at->format('F j, Y g:i A') }}</td>
-                                <td><i class="bi bi-gear-fill"></i></td>
+                                <td>
+                                <button
+                                wire:click="setLocationId({{ $location->location_id }})" x-on:click="activeTab = 'editLocation'" class="btn btn-ghost">
+                                    <i class="bi bi-gear-fill"></i>
+                                </button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

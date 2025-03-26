@@ -36,7 +36,6 @@ class AddLocation extends Component
 
         $this->name = trim($this->name);
         $this->remarks = trim($this->remarks);
-        $this->status = 1;
 
         $this->validate();
 
@@ -49,15 +48,14 @@ class AddLocation extends Component
         if ($newLocation) {
             $this->emit('trigger-toast', 'New location created.', 'success');
             $this->emit('updateLocationsTable');
-            if ($newLocation) {
-                $message = "New location created - location name: {$this->name}";
-                Log::create([
-                    'user_id' => Auth::user()->user_id,
-                    'type' => 'create',
-                    'message' => $message,
-                ]);
-                $this->emit('updateLogsTable');
-            }
+
+            $message = "New location created - location name: {$this->name}";
+            Log::create([
+                'user_id' => Auth::user()->user_id,
+                'type' => 'create',
+                'message' => $message,
+            ]);
+            $this->emit('updateLogsTable');
         }
         $this->name = "";
         $this->remarks = "";

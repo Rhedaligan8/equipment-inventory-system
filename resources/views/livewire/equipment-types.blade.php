@@ -87,7 +87,12 @@
                                     @endif
                                 </td>
                                 <td>{{ $equipment_type-> updated_at->format('F j, Y g:i A') }}</td>
-                                <td><i class="bi bi-gear-fill"></i></td>
+                                <td>
+                                <button
+                                wire:click="setEquipmentTypeId({{ $equipment_type->equipment_type_id }})" x-on:click="activeTab = 'editEquipmentType'" class="btn btn-ghost">
+                                    <i class="bi bi-gear-fill"></i>
+                                </button>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

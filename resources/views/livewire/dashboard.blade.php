@@ -12,6 +12,12 @@
                     <section x-cloak x-show="activeTab == 'preventiveMaintenance'" class="h-full">
                         <livewire:preventive-maintenance />
                     </section>
+                    <section x-cloak x-show="activeTab == 'addEquipment'" class="h-full">
+                        <livewire:add-equipment />
+                    </section>
+                    <section x-cloak x-show="activeTab == 'editEquipment'" class="h-full">
+                        <livewire:edit-equipment />
+                    </section>
                 </div>
             </section>
 
@@ -24,6 +30,9 @@
                     <section x-cloak x-show="activeTab == 'addEquipmentType'" class="h-full">
                         <livewire:add-equipment-type />
                     </section>
+                    <section x-cloak x-show="activeTab == 'editEquipmentType'" class="h-full">
+                        <livewire:edit-equipment-type />
+                    </section>
                 </div>
             </section>
 
@@ -35,6 +44,9 @@
                     </section>
                     <section x-cloak x-show="activeTab == 'addLocation'" class="h-full">
                         <livewire:add-location />
+                    </section>
+                    <section x-cloak x-show="activeTab == 'editLocation'" class="h-full">
+                        <livewire:edit-location />
                     </section>
                 </div>
             </section>

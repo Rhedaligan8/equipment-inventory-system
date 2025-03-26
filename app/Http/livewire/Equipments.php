@@ -10,7 +10,7 @@ class Equipments extends Component
 {
     use WithPagination;
 
-    protected $listeners = ['updateEquipmentTypesTable'];
+    protected $listeners = ['updateEquipmentsTable'];
 
     public $perPage = 10;
     public $name = "";
@@ -25,7 +25,7 @@ class Equipments extends Component
         }
     }
 
-    public function updateEquipmentTypesTable()
+    public function updateEquipmentsTable()
     {
         $this->emit('$refresh');
     }
@@ -45,6 +45,10 @@ class Equipments extends Component
     {
         $this->emit("equipment_to_pm_id", $equipment_id);
     }
+    public function setEquipmentToEditId($equipment_id)
+    {
+        $this->emit("equipment_to_edit_id", $equipment_id);
+    }
 
     public function updated()
     {
@@ -56,7 +60,13 @@ class Equipments extends Component
         return view(
             'livewire.equipments',
             [
-                'equipments' => Equipment::paginate($this->perPage, ['*'], "equipmentsPage")
+                'equipments' => Equipment::select('equipments.*')
+                    ->join('equipment_types', 'equipment_types.equipment_type_id', '=', 'equipments.equipment_type_id')
+                    ->join('infosys.employee', 'infosys.employee.employee_id', '=', 'equipments.person_accountable_id')
+                    ->join('infosys.unit', 'infosys.unit.unit_id', '=', 'equipments.person_accountable_current_unit_id')
+                    ->join('infosys.division', 'infosys.division.division_id', '=', 'infosys.unit.unit_div')
+                    ->orderBy($this->orderBy, $this->orderDirection)
+                    ->paginate($this->perPage, ['*'], "equipmentsPage")
             ]
         )->layout("layouts.dashboard");
     }

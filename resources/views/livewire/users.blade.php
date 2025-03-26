@@ -164,8 +164,8 @@
                                             <div class="badge badge-soft badge-error font-bold">Inactive</div>
                                         @endif
                                     </td>
-                                    <td>{{ $user->created_at->format('F j, Y') }}</td>
-                                    <td>{{ $user->updated_at->format('F j, Y') }}</td>
+                                    <td>{{ $user->created_at->format('F j, Y g:i A')  }}</td>
+                                    <td>{{ $user->updated_at->format('F j, Y g:i A')  }}</td>
                                     <td><i class="bi bi-gear-fill"></i></td>
                                 </tr>
                             @endforeach

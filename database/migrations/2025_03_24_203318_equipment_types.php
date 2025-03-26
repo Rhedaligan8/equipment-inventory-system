@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('equipment_types', function (Blueprint $table) {
-            $table->id(); // Auto-increment primary key
+            $table->bigIncrements('equipment_type_id'); // Auto-increment primary key
             $table->string('name')->unique(); // Name column
             $table->text('description')->nullable(); // description (optional)
             $table->boolean('status')->default(1); // Status (default to active)

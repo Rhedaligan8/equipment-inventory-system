@@ -7,7 +7,7 @@
         <!-- inputs -->
         <div class="flex gap-2 flex-col">
             <div>
-                <label class="block" for="role">Location name</label>
+                <label class="block" for="role">Equipment type name</label>
                 <input type="text" wire:model.defer="name" placeholder="Location name"
                     class="input focus:ring-0 focus:outline-none w-full" />
                 @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror

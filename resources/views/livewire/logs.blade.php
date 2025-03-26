@@ -23,7 +23,7 @@
                         FILTERS
                     </div>
                     <div tabindex="0"
-                        class="dropdown-content menu bg-base-300 rounded-box z-1 w-52 p-2 shadow-sm flex flex-col gap-2">
+                        class="border border-black/50 dropdown-content menu bg-base-300 rounded-box z-1 w-52 p-2 shadow-sm flex flex-col gap-2">
                         <button wire:click="resetFilter()"
                             class="self-end font-bold bg-red-500 text-white text-xs py-1 px-2 active:scale-95 rounded-lg cursor-pointer">RESET</button>
                         <!-- role -->

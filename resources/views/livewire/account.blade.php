@@ -20,7 +20,7 @@
             </div>
             <div>
                 <p>Division / Section</p>
-                <div class="w-80 font-bold border rounded-md p-2 flex items-center justify-between">
+                <div class="w-80 font-bold border rounded-md flex py-1 px-2 items-center justify-between">
                     <span>{{ $division_code }} / {{ $unit_code }}</span>
                     <div class="tooltip" data-tip="{{ $division_desc }} / {{ $unit_desc }}">
                         <i class="bi bi-info-circle-fill text-accent"></i>

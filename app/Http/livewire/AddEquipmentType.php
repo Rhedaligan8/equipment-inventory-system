@@ -16,7 +16,7 @@ class AddEquipmentType extends Component
     public $status = 1;
 
     protected $rules = [
-        'name' => 'required|max:255|unique:icteiis.locations,name',
+        'name' => 'required|max:255|unique:icteiis.equipment_types,name',
     ];
 
     protected $messages = [
@@ -36,7 +36,6 @@ class AddEquipmentType extends Component
 
         $this->name = trim($this->name);
         $this->description = trim($this->description);
-        $this->status = 1;
 
         $this->validate();
 
@@ -49,15 +48,14 @@ class AddEquipmentType extends Component
         if ($newEquipmentType) {
             $this->emit('trigger-toast', 'New equipment type created.', 'success');
             $this->emit('updateEquipmentTypesTable');
-            if ($newEquipmentType) {
-                $message = "New equipment type created - equipment name: {$this->name}";
-                Log::create([
-                    'user_id' => Auth::user()->user_id,
-                    'type' => 'create',
-                    'message' => $message,
-                ]);
-                $this->emit('updateLogsTable');
-            }
+            $message = "New equipment type created - equipment name: {$this->name}";
+            Log::create([
+                'user_id' => Auth::user()->user_id,
+                'type' => 'create',
+                'message' => $message,
+            ]);
+            $this->emit('updateLogsTable');
+
         }
         $this->name = "";
         $this->description = "";

@@ -41,6 +41,11 @@ class Locations extends Component
         $this->resetPage('locationsPage');
     }
 
+    public function setLocationId($location_id)
+    {
+        $this->emit("location_to_edit_id", $location_id);
+    }
+
     public function updated()
     {
         $this->resetPage('locationsPage');

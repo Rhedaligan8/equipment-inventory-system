@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->id(); // Auto-increment primary key
+            $table->bigIncrements('location_id'); // Auto-increment primary key
             $table->string('name')->unique(); // Name column
             $table->text('remarks')->nullable(); // Remarks (optional)
             $table->boolean('status')->default(1); // Status (default to active)
@@ -23,6 +23,6 @@ return new class extends Migration {
 
     public function down()
     {
-        Schema::dropIfExists('examples');
+        Schema::dropIfExists('locations');
     }
 };

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Division;
 use App\Models\Employee;
+use App\Models\Equipment;
 
 class Unit extends Model
 {
@@ -21,5 +22,10 @@ class Unit extends Model
     public function employee()
     {
         return $this->hasMany(Employee::class, 'unit_unit_id', 'unit_id');
+    }
+
+    public function equipment()
+    {
+        return $this->hasMany(Equipment::class, 'person_accountable_current_unit_id', 'unit_id');
     }
 }

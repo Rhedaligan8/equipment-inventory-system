@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Equipment;
 
 class Location extends Model
 {
@@ -27,6 +28,6 @@ class Location extends Model
 
     public function equipment()
     {
-        // return $this->belongsTo(User::class, 'user_id', 'user_id');
+        return $this->hasMany(Equipment::class, 'location_id', 'location_id');
     }
 }

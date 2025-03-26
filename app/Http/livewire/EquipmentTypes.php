@@ -41,6 +41,11 @@ class EquipmentTypes extends Component
         $this->resetPage('equipmentTypesPage');
     }
 
+    public function setEquipmentTypeId($equipment_type_id)
+    {
+        $this->emit("equipment_type_to_edit_id", $equipment_type_id);
+    }
+
     public function updated()
     {
         $this->resetPage('equipmentTypesPage');

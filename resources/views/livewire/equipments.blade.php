@@ -1,6 +1,6 @@
 <div class="h-full">
     <div class="overflow-x-auto flex flex-col h-full">
-        <button x-on:click="activeTab = 'addEquipmentType'" class="btn btn-sm btn-primary text-base-100 self-end mb-2">
+        <button x-on:click="activeTab = 'addEquipment'" class="btn btn-sm btn-primary text-base-100 self-end mb-2">
             <i class="bi bi-pc-display"></i>
             ADD EQUIPMENT</button>
         <!-- header -->
@@ -59,9 +59,25 @@
                             <th>MR NO</th>
                             <th>REMARKS</th>
                             <th>LOCATION</th>
-                            <th>ACQUIRED DATE</th>
+                            <th>     <button @class(['text-accent' => $orderBy == 'acquired_date', 'hover:underline cursor-pointer hover:text-accent'])
+                                wire:click="toggleOrder('acquired_date')">ACQUIRED DATE
+                                @if($orderBy == 'acquired_date' && $orderDirection == 'asc')
+                                    <i class="bi bi-caret-up-fill" style="font-size: 1rem;"></i>
+                                @elseif($orderBy == 'acquired_date' && $orderDirection == 'desc')
+                                    <i class="bi bi-caret-down-fill" style="font-size: 1rem;"></i>
+                                @endif
+                            </button></th>
                             <th>ACCOUNTABLE</th>
-                            <th>ACCOUNTABLE LAST KNOWN SECTION</th>
+                            <th>DIVISION/UNIT</th>
+                            <th>
+                    <button @class(['text-accent' => $orderBy == 'updated_at', 'hover:underline cursor-pointer hover:text-accent'])
+                                wire:click="toggleOrder('updated_at')">UPDATED AT
+                                @if($orderBy == 'updated_at' && $orderDirection == 'asc')
+                                    <i class="bi bi-caret-up-fill" style="font-size: 1rem;"></i>
+                                @elseif($orderBy == 'updated_at' && $orderDirection == 'desc')
+                                    <i class="bi bi-caret-down-fill" style="font-size: 1rem;"></i>
+                                @endif
+                            </button></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -70,28 +86,43 @@
                             @foreach ($equipments as $equipment)
                                 <tr>
                                     <td> {{ $loop->index + 1 }}</td>
-                                    <td>{{ $equipment->equipment_type_id }}</td>
+                                    <td>{{ $equipment->equipment_type->name }}</td>
                                     <td>{{ $equipment->brand }}</td>
                                     <td>{{ $equipment->model }}</td>
                                     <td>{{ $equipment->serial_number }}</td>
                                     <td>{{ $equipment->mr_no }}</td>
                                     <td>{{ $equipment->remarks }}</td>
-                                    <td>{{ $equipment->location_id }}</td>
-                                    <td>{{ $equipment->acquired_date }}</td>
-                                    <td>{{ $equipment->person_accountable_id }}</td>
-                                    <td>{{ $equipment->person_accountable_current_unit_id }}</td>
+                                    <td>{{ $equipment->location->name }}</td>
+                                    <td>{{$equipment->acquired_date ? $equipment->acquired_date->format('F j, Y') : "Unknown"}}
+                                    </td>
                                     <td>
-                                        <div class="dropdown dropdown-left">
-                                            <div tabindex="0" role="button" class="btn m-1"> <i class="bi bi-gear-fill"></i>
+                                        {{ $equipment->employee->lastname . ', ' . $equipment->employee->firstname }}
+                                    </td>
+                                    <td>
+                                        {{ $equipment->employee->unit->division->division_code . '/' . $equipment->employee->unit->unit_code }}
+                                        <div class="tooltip tooltip-left"
+                                            data-tip="{{ $equipment->employee->unit->division->division_desc }} / {{ $equipment->employee->unit->unit_desc }}">
+                                            <i class="bi bi-info-circle-fill text-accent"></i>
+                                        </div>
+                                    </td>
+                                    <td>{{ $equipment->updated_at->format('F j, Y') }}</td>
+                                    <td>
+                                        <div class="dropdown dropdown-left dropdown-end">
+                                            <div tabindex="0" role="button" class="btn btn-ghost"> <i
+                                                    class="bi bi-gear-fill"></i>
                                             </div>
                                             <ul tabindex="0"
-                                                class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                                class="flex flex-col gap-2 dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm border border-black/50">
 
                                                 <button x-on:click="activeTab = 'preventiveMaintenance'"
-                                                    wire:key="equipment-{{ $equipment->equipment_id }}"
+                                                    wire:key="pm-equipment-{{ $equipment->equipment_id }}"
                                                     wire:click="setPMEquipmentId({{ $equipment->equipment_id }})" type="button"
-                                                    class="button">PM</button>
+                                                    class="cursor-pointer hover:bg-accent/80 button bg-accent p-1 text-base-100 font-bold rounded-md">PM</button>
 
+                                                    <button x-on:click="activeTab = 'editEquipment'"
+                                                    wire:key="edit-equipment-{{ $equipment->equipment_id }}"
+                                                    wire:click="setEquipmentToEditId({{ $equipment->equipment_id }})" type="button"
+                                                    class="cursor-pointer hover:bg-accent/80 button bg-accent p-1 text-base-100 font-bold rounded-md">EDIT</button>
                                             </ul>
                                         </div>
 
