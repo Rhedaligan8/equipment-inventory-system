@@ -127,46 +127,51 @@ class AddEquipment extends Component
         $this->mr_no = trim($this->mr_no);
         $this->remarks = trim($this->remarks);
         $this->brand = trim($this->brand);
+        try {
 
-        $this->validate();
+            $this->validate();
 
-        $new_euipment = Equipment::create([
-            "serial_number" => $this->serial_number,
-            "model" => $this->model,
-            "mr_no" => $this->mr_no,
-            "remarks" => $this->remarks,
-            "brand" => $this->brand,
-            "acquired_date" => $this->acquired_date,
-            "person_accountable_id" => $this->employee_id,
-            "equipment_type_id" => $this->equipment_type_id,
-            "location_id" => $this->location_id,
-            "person_accountable_current_unit_id" => Employee::find($this->employee_id)->first()->unit_unit_id
-        ]);
-
-        if ($new_euipment) {
-            $this->emit('trigger-toast', 'New equipment created.', 'success');
-            $this->emit('updateEquipmentsTable');
-            $message = "New equipment created";
-            Log::create([
-                'user_id' => Auth::user()->user_id,
-                'type' => 'create',
-                'message' => $message,
+            $new_euipment = Equipment::create([
+                "serial_number" => $this->serial_number,
+                "model" => $this->model,
+                "mr_no" => $this->mr_no,
+                "remarks" => $this->remarks,
+                "brand" => $this->brand,
+                "acquired_date" => $this->acquired_date,
+                "person_accountable_id" => $this->employee_id,
+                "equipment_type_id" => $this->equipment_type_id,
+                "location_id" => $this->location_id,
+                "person_accountable_current_unit_id" => Employee::find($this->employee_id)->first()->unit_unit_id
             ]);
-            $this->emit('updateLogsTable');
+
+            if ($new_euipment) {
+                $this->emit('trigger-toast', 'New equipment created.', 'success');
+                $this->emit('updateEquipmentsTable');
+                $message = "New equipment created";
+                Log::create([
+                    'user_id' => Auth::user()->user_id,
+                    'type' => 'create',
+                    'message' => $message,
+                ]);
+                $this->emit('updateLogsTable');
+            }
+            $this->brand = "";
+            $this->model = "";
+            $this->serial_number = "";
+            $this->mr_no = "";
+            $this->remarks = "";
+            $this->acquired_date = null;
+            $this->employee_id = "";
+            $this->equipment_type_id = "";
+            $this->location_id = "";
+            $this->employee_name = "";
+            $this->location_name = "";
+            $this->equipment_type_name = "";
+            $this->fetchData();
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $this->fetchData();
+            $this->setErrorBag($e->validator->getMessageBag());
         }
-        $this->brand = "";
-        $this->model = "";
-        $this->serial_number = "";
-        $this->mr_no = "";
-        $this->remarks = "";
-        $this->acquired_date = null;
-        $this->employee_id = "";
-        $this->equipment_type_id = "";
-        $this->location_id = "";
-        $this->employee_name = "";
-        $this->location_name = "";
-        $this->equipment_type_name = "";
-        $this->fetchData();
     }
 
     public function fetchData()

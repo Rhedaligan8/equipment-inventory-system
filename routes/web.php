@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Dashboard;
-use App\Http\Controllers\UserData;
+use App\Http\Livewire\DesktopLaptopPMPreview;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +21,6 @@ Route::get('/', Login::class)->middleware('guest')->name("login");
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', Dashboard::class)->name("dashboard");
 });
+
+Route::get('/desktop-laptop-pm-preview', DesktopLaptopPMPreview::class)->name("desktop-laptop-pm-preview");
+

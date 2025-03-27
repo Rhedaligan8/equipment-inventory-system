@@ -115,6 +115,7 @@ class CreateUser extends Component
             $this->fetchEmployees();
             $this->emit('trigger-toast', 'New user created.', 'success');
         } catch (\Illuminate\Validation\ValidationException $e) {
+            $this->fetchEmployees();
             $this->setErrorBag($e->validator->getMessageBag());
         }
     }

@@ -11,8 +11,6 @@ class PreventiveMaintenance extends Component
 
     public $equipment_id = '';
     public $equipment = '';
-    public $month = '';
-    public $year = '';
     protected $listeners = ["equipment_to_pm_id" => 'updateEquipment'];
 
     public function updateEquipment($equipment_id)

@@ -1,6 +1,11 @@
-<div class="flex flex-col gap-2 overflow-auto">
+<div class="flex flex-col gap-2 overflow-auto" wire:init="fetchDivisionSections()">
+    <!-- header -->
+    <h1 class="font-bold text-xl font-inter mb-2">
+        Desktop PC/Laptop Maintenance Task Sheet For the Month of {{ date('F')  }}, {{  date('Y') }}
+    </h1>
     <!-- system boot -->
     <div>
+        {{ $system_boot_status_a }}
         <h2 class="font-bold text-lg">1. System Boot</h2>
         <div class="flex flex-col gap-2">
             <!-- a -->
@@ -14,13 +19,16 @@
                     on page 2 for list of VLAN per division/section )
                 </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="system_boot_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('system_boot_status_a') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    <textarea wire:model.defer="system_boot_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -35,13 +43,16 @@
                     <b>Disable button</b> on bottom-left corner.)
                 </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="system_boot_status_b"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('system_boot_status_b') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                    <textarea wire:model.defer="system_boot_remarks_b"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -61,13 +72,17 @@
                     any logo/text appeared on the screen, or when after pressing specific ke to proceed)
                 </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="network_settings_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('network_settings_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="network_settings_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -79,13 +94,18 @@
                         Properties</b>)
                 </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="network_settings_status_b"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status
+                        </option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('network_settings_status_b') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="network_settings_remarks_b"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -97,13 +117,17 @@
                     Windows” should be turned “On”.)
                 </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="network_settings_status_c"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('network_settings_status_c') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="network_settings_remarks_c"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -115,13 +139,17 @@
                     “Section-Username”, ex. MISS-rjaluspo.)
                 </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="network_settings_status_d"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('network_settings_status_d') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="network_settings_remarks_d"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -141,13 +169,18 @@
                     these settings.)
                 </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="computer_hardware_settings_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('computer_hardware_settings_status_a') <span
+                        class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="computer_hardware_settings_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -160,16 +193,20 @@
             <div>
                 <h3>a. Verify Antivirus Software</h3>
                 <h4 class="my-2 text-sm">(Check for any antivirus software enabled on the PC, If no
-                    antivirus, check if Windows Defender is enabled. Open Settings > Windows Security >
-                    Virus & Threat Protection to verify)</h4>
+                    antivirus, check if Windows Defender is enabled. Open <b>Settings > Windows Security >
+                        Virus & Threat Protection</b> to verify)</h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="antivirus_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('antivirus_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="antivirus_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -184,16 +221,20 @@
                 <h3>a. Verify all required software is installed and operating correctly. Remove
                     unauthorized software</h3>
                 <h4 class="my-2 text-sm">(Only essential office or work-related software are installed and
-                    operating correctly. Remove unauthorized software. Open Control Panel > Programs >
-                    Programs & Features for list of installed programs)</h4>
+                    operating correctly. Remove unauthorized software. Open <b>Control Panel > Programs >
+                        Programs & Features</b> for list of installed programs)</h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="proper_hardware_loads_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('proper_hardware_loads_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="proper_hardware_loads_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -206,16 +247,20 @@
         <div class="flex flex-col gap-2">
             <div>
                 <h3>a. Run sfc /scannow to verify system files</h3>
-                <h4 class="my-2 text-sm">(Verify system files and check for errors. Open Command Prompt,
-                    select run as administrator, type sfc /scannow and wait for result)</h4>
+                <h4 class="my-2 text-sm">(Verify system files and check for errors. Open <b>Command Prompt</b>,
+                    select <b>run as administrator</b>, type <b>sfc /scannow</b> and wait for result)</h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="operating_system_checkup_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('operating_system_checkup_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="operating_system_checkup_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -228,16 +273,21 @@
         <div class="flex flex-col gap-2">
             <div>
                 <h3>a. Run a scandisk, including surface scan</h3>
-                <h4 class="my-2 text-sm">(run scandisk and check for errors if any (run CMD as admin, type:
-                    chkdsk /i))</h4>
+                <h4 class="my-2 text-sm">(run scandisk and check for errors if any (run <b>CMD</b> as admin, type:
+                    <b>chkdsk /i</b>))
+                </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="disk_checkup_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('disk_checkup_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="disk_checkup_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -253,13 +303,17 @@
                 <h4 class="my-2 text-sm">(Simply check any dust/dirt on the outside surface of the PC,
                     ventilation, keyboard and mouse.)</h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="physical_cleaning_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('physical_cleaning_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="physical_cleaning_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -272,23 +326,35 @@
         <div class="flex flex-col gap-2">
             <div>
                 <h3>a. Verify physical hardware issues</h3>
-                <h4 class="my-2 text-sm">(Open Speccy and check the following:
-                    CPU temperature - normal value: between 150 to 160 degrees Fahrenheit (65 to 70 degrees
+                <h4 class="my-2 text-sm">(Open <b>Speccy</b> and check the following:
+                    <br>
+                    <b>CPU temperature</b> - normal value: between <b>150</b> to <b>160</b> degrees Fahrenheit
+                    (<b>65</b> to <b>70</b> degrees
                     Celsius).
-                    RAM – normal value: threshold of 80% memory usage.
-                    Motherboard – temperature normal value: between 68 degrees and 176 degrees Fahrenheit
-                    (20 degrees to 80 degrees Celsius).
-                    Hard Disk Drive - The normal hard disk temperature is 25C – 45C. Having slightly higher
+                    <br>
+                    <b>RAM</b> – normal value: threshold of <b>80%</b> memory usage.
+                    <br>
+                    <b>Motherboard</b> – temperature normal value: between <b>68</b> degrees and <b>176</b> degrees
+                    Fahrenheit
+                    (<b>20</b> degrees to <b>80</b> degrees Celsius).
+                    <br>
+                    <b>Hard Disk Drive</b> - The <b>normal hard disk temperature</b> is <b>25C – 45C</b>. Having
+                    slightly higher
                     or lower HDD temperature is still safe, but it will potentially reduce your hard drive
-                    lifespan and reliability.)</h4>
+                    lifespan and reliability.)
+                </h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="hardware_inspection_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('hardware_inspection_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="hardware_inspection_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -303,13 +369,17 @@
                 <h3>a. Verify strong user password security</h3>
                 <h4 class="my-2 text-sm">(Check if the PC requires user login strong password.)</h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="password_security_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('password_security_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="password_security_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -325,13 +395,17 @@
                 <h4 class="my-2 text-sm">(Verify single user account, excluding Administrator account and
                     inspect if desktop notes contain exposed passwords)</h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="user_accounts_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('user_accounts_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="user_accounts_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
@@ -347,17 +421,76 @@
                 <h4 class="my-2 text-sm">(Provide summary for overall performance and condition of
                     Desktop/Laptop)</h4>
                 <div class="flex flex-col gap-2">
-                    <select class="select select-neutral focus:ring-0 focus:outline-none">
-                        <option disabled selected>Select status</option>
-                        <option>OK</option>
-                        <option>Repair</option>
-                        <option>N/A</option>
+                    <select wire:model.defer="summary_status_a"
+                        class="select select-neutral focus:ring-0 focus:outline-none">
+                        <option value="">Select status</option>
+                        <option value="ok">OK</option>
+                        <option value="repair">Repair</option>
+                        <option value="n/a">N/A</option>
                     </select>
-                    <textarea class="textarea textarea-neutral focus:ring-0 focus:outline-none"
+                    @error('summary_status_a') <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                    <textarea wire:model.defer="summary_remarks_a"
+                        class="textarea textarea-neutral focus:ring-0 focus:outline-none"
                         placeholder="Remarks"></textarea>
                 </div>
             </div>
         </div>
     </div>
-    <button class="my-4 btn btn-accent text-base-100 flex-start font-bold">SUBMIT</button>
+    <!-- additional information -->
+    <h2 class="font-bold text-lg">Additional Information</h2>
+    <div class="flex flex-col gap-2">
+        <!-- <div class="flex flex-col">
+            <label for="date_conducted">Date conducted</label>
+            <input wire:model.defer="date_conducted" type="date"
+                class="input-neutral focus:ring-0 focus:outline-none input">
+            @error('date_conducted') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div> -->
+        <div class="flex flex-col">
+            <label for="date_conducted">End user verification</label>
+            <input placeholder="End user verification" type="text"
+                class="input-neutral focus:ring-0 focus:outline-none input">
+        </div>
+        <div class="flex flex-col">
+            <label for="position">Position</label>
+            <input wire:model.defer="position" placeholder="Position" id="position" type="text"
+                class="input-neutral focus:ring-0 focus:outline-none input">
+            @error('position') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
+        <div class="w-80" x-data="{open: false}">
+            <div class="flex flex-col">
+                <label for="division-section">Division and Section</label>
+                <input id="division-section" type="search" placeholder="Search division/section"
+                    wire:model.debounce.500ms="division_section" @focus="open = true"
+                    @blur="setTimeout(() => open = false, 100)"
+                    class="input input-neutral focus:ring-0 focus:outline-none w-full" />
+                <div x-show="open" class="dropdown dropdown-open relative">
+                    <div tabindex="0" role="button" class="btn hidden"></div>
+                    <div tabindex="0"
+                        class="dropdown-content menu bg-base-100 z-10 w-full shadow-sm border border-gray-500 absolute p-0 max-h-60 bottom-full mb-10">
+                        <div class="h-full overflow-y-auto">
+                            <div wire:loading class="p-2 flex items-center justify-center w-full overflow-y-hidden">
+                                <span class="loading loading-spinner loading-sm text-center"></span>
+                            </div>
+                            @if(count($division_sections))
+                                @foreach ($division_sections as $division_section)
+                                    <div wire:key="unit-{{ $division_section->unit_id }}-pm"
+                                        wire:click="setSelectedDivisionSection({{ $division_section }})"
+                                        class="w-full hover:text-base-100 hover:bg-blue-500 transition-none rounded-none text-start justify-start border-black/50 border-0 border-b-2 p-2 cursor-pointer">
+                                        {{ $division_section->division_section }}
+                                    </div>
+                                @endforeach
+                            @else
+                                <p wire:loading.remove class="font-bold text-sm text-center p-2">NO RESULT</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @error('unit_id') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+
+    </div>
+    <button wire:click="submitPM" wire:loading.attr="disabled"
+        class="my-4 btn btn-accent text-base-100 flex-start font-bold">SUBMIT</button>
 </div>

@@ -49,6 +49,10 @@ class Equipments extends Component
     {
         $this->emit("equipment_to_edit_id", $equipment_id);
     }
+    public function setPMHistoryEquipmentId($equipment_id)
+    {
+        $this->emit("pm_history_equipment__id", $equipment_id);
+    }
 
     public function updated()
     {

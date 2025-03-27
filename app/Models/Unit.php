@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Division;
 use App\Models\Employee;
 use App\Models\Equipment;
+use App\Models\DesktopLaptopPMModel;
 
 class Unit extends Model
 {
@@ -27,5 +28,10 @@ class Unit extends Model
     public function equipment()
     {
         return $this->hasMany(Equipment::class, 'person_accountable_current_unit_id', 'unit_id');
+    }
+
+    public function desktop_laptop_pm()
+    {
+        return $this->hasMany(DesktopLaptopPMModel::class, 'unit_id', 'unit_id');
     }
 }

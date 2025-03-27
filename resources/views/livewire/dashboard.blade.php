@@ -18,6 +18,9 @@
                     <section x-cloak x-show="activeTab == 'editEquipment'" class="h-full">
                         <livewire:edit-equipment />
                     </section>
+                    <section x-cloak x-show="activeTab == 'desktopLaptopPMHistory'" class="h-full">
+                        <livewire:desktop-laptop-p-m-history />
+                    </section>
                 </div>
             </section>
 
@@ -66,6 +69,7 @@
 
                 <!-- logs tab -->
                 <section class="h-full " x-cloak x-show="activeTab == 'logs'">
+
                     <livewire:logs />
                 </section>
             @endif

@@ -64,7 +64,8 @@
             </div>
 
             @if($employee_name && $employee_id)
-                <button wire:key="create-button" wire:click="create" class="btn btn-primary text-base-100 w-full font-bold">
+                <button wire:loading.attr="disabled" wire:key="create-button" wire:click="create"
+                    class="btn btn-primary text-base-100 w-full font-bold">
                     <span wire:loading class="loading loading-spinner size-5"></span>CREATE</button>
             @else
                 <button disabled class="btn btn-primary text-base-100 w-full font-bold">

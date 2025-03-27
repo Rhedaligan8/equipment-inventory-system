@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Unit;
 use App\Models\EquipmentType;
+use App\Models\DesktopLaptopPMModel;
 
 class Equipment extends Model
 {
@@ -55,6 +56,11 @@ class Equipment extends Model
     public function equipment_type()
     {
         return $this->belongsTo(EquipmentType::class, 'equipment_type_id', 'equipment_type_id');
+    }
+
+    public function desktop_laptop_pm()
+    {
+        return $this->hasMany(DesktopLaptopPMModel::class, 'equipment_id', 'equipment_id');
     }
 
 }

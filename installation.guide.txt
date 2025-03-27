@@ -19,3 +19,5 @@ php artisan db:seed --class=EquipmentTypeSeeder
 
 php artisan migrate --path=database/migrations/2025_03_24_213452_equipments.php --database=icteiis
 php artisan db:seed --class=EquipmentSeeder
+
+php artisan migrate --path=database/migrations/2025_03_27_083447_desktop_laptop_p_ms.php --database=icteiis

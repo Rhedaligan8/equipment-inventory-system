@@ -133,7 +133,7 @@
         <div class="flex items-center gap-2 mt-4 justify-end">
             <button wire:loading.attr="disabled" wire:click="addEquipment()"
                 class="btn btn-primary text-base-100 focus:ring-0 focus:outline-none">
-                <span wire:loading class="loading loading-spinner size-5"></span>ADD</button>
+                ADD</button>
         </div>
     </div>
 </div>
