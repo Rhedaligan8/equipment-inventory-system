@@ -14,7 +14,8 @@
             </div>
         </div>
     @else
-        <div class=" flex flex-col grow overflow-hidden gap-4">
+        <div
+            class=" flex flex-col grow overflow-hidden gap-4 h-full bg-base-100 border-2 border-neutral/25 rounded-md p-4 shadow-md ">
             <div class="flex justify-center gap-8 overflow-hidden grow">
                 <!-- PM Form -->
                 @if ($pmUtils::isValidDesktopLaptopPM($equipment->equipment_type->name))
