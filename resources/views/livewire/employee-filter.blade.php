@@ -2,7 +2,7 @@
     <div class="flex flex-col w-full">
         <input type="search" placeholder="Search employee last name" wire:model.debounce.500ms="employee_name"
             @focus="open = true" @blur="setTimeout(() => open = false, 100)"
-            class="input input-sm focus:ring-0 focus:outline-none w-full" />
+            class="input  focus:ring-0 focus:outline-none w-full" />
         <div x-show="open" class="dropdown dropdown-open">
             <div tabindex="0" role="button" class="btn hidden"></div>
             <div tabindex="0"

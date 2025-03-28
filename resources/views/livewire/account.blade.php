@@ -1,5 +1,5 @@
 <div wire:init="getUserInformation()"
-    class="flex flex-col items-center overflow-y-auto h-full bg-base-100 border-2 border-neutral/25 rounded-md p-4 shadow-md">
+    class="flex flex-col items-center overflow-hidden overflow-y-auto h-full bg-base-100 border-2 border-neutral/25 rounded-md p-4 shadow-md">
     @if($user_information)
         <p class=" self-start"><b>Date created:
             </b>{{ $user_information->created_at->format('F j, Y')}}</p>

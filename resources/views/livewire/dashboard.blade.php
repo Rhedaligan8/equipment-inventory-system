@@ -1,6 +1,6 @@
-<div class="flex h-full bg-base-300" x-data="{activeTab: 'equipments'}">
+<div class="flex h-full bg-base-300 overflow-x-auto" x-data="{activeTab: 'equipments'}">
     <livewire:sidebar />
-    <div class="grow flex flex-col">
+    <div class="grow flex flex-col ">
         <livewire:header />
         <div class="m-6 grow overflow-hidden">
             <!-- equipments tab -->

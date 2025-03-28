@@ -1,5 +1,5 @@
-<div class="h-full">
-    <div class="overflow-x-auto flex flex-col h-full">
+<div class="h-full bg-base-100 border-2 border-neutral/25 rounded-md p-4 shadow-md grow">
+    <div class="flex flex-col h-full">
         <!-- header -->
         <div class="mb-4 flex justify-between">
             <div class="flex gap-1 items-center">
