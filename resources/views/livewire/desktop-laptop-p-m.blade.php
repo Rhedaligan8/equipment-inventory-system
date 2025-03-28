@@ -1,11 +1,10 @@
-<div class="flex flex-col gap-2 overflow-auto" wire:init="fetchDivisionSections()">
+<div class="flex flex-col gap-2 overflow-auto">
     <!-- header -->
     <h1 class="font-bold text-xl font-inter mb-2">
         Desktop PC/Laptop Maintenance Task Sheet For the Month of {{ date('F')  }}, {{  date('Y') }}
     </h1>
     <!-- system boot -->
     <div>
-        {{ $system_boot_status_a }}
         <h2 class="font-bold text-lg">1. System Boot</h2>
         <div class="flex flex-col gap-2">
             <!-- a -->
@@ -446,50 +445,17 @@
                 class="input-neutral focus:ring-0 focus:outline-none input">
             @error('date_conducted') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div> -->
-        <div class="flex flex-col">
+        <!-- <div class="flex flex-col">
             <label for="date_conducted">End user verification</label>
             <input placeholder="End user verification" type="text"
                 class="input-neutral focus:ring-0 focus:outline-none input">
-        </div>
+        </div> -->
         <div class="flex flex-col">
-            <label for="position">Position</label>
+            <label for="position">End user position</label>
             <input wire:model.defer="position" placeholder="Position" id="position" type="text"
                 class="input-neutral focus:ring-0 focus:outline-none input">
             @error('position') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
-        <div class="w-80" x-data="{open: false}">
-            <div class="flex flex-col">
-                <label for="division-section">Division and Section</label>
-                <input id="division-section" type="search" placeholder="Search division/section"
-                    wire:model.debounce.500ms="division_section" @focus="open = true"
-                    @blur="setTimeout(() => open = false, 100)"
-                    class="input input-neutral focus:ring-0 focus:outline-none w-full" />
-                <div x-show="open" class="dropdown dropdown-open relative">
-                    <div tabindex="0" role="button" class="btn hidden"></div>
-                    <div tabindex="0"
-                        class="dropdown-content menu bg-base-100 z-10 w-full shadow-sm border border-gray-500 absolute p-0 max-h-60 bottom-full mb-10">
-                        <div class="h-full overflow-y-auto">
-                            <div wire:loading class="p-2 flex items-center justify-center w-full overflow-y-hidden">
-                                <span class="loading loading-spinner loading-sm text-center"></span>
-                            </div>
-                            @if(count($division_sections))
-                                @foreach ($division_sections as $division_section)
-                                    <div wire:key="unit-{{ $division_section->unit_id }}-pm"
-                                        wire:click="setSelectedDivisionSection({{ $division_section }})"
-                                        class="w-full hover:text-base-100 hover:bg-blue-500 transition-none rounded-none text-start justify-start border-black/50 border-0 border-b-2 p-2 cursor-pointer">
-                                        {{ $division_section->division_section }}
-                                    </div>
-                                @endforeach
-                            @else
-                                <p wire:loading.remove class="font-bold text-sm text-center p-2">NO RESULT</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @error('unit_id') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-
     </div>
     <button wire:click="submitPM" wire:loading.attr="disabled"
         class="my-4 btn btn-accent text-base-100 flex-start font-bold">SUBMIT</button>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Unit;
 
-class DesktopLaptopPMModel extends Model
+class DesktopLaptopPM extends Model
 {
     use HasFactory;
 
@@ -18,6 +18,7 @@ class DesktopLaptopPMModel extends Model
         'equipment_id',
         'unit_id',
         'position',
+        'end_user_verification',
         // System Boot
         'system_boot_status_a',
         'system_boot_remarks_a',

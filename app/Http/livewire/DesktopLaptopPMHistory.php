@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\DesktopLaptopPMModel;
+use App\Models\DesktopLaptopPM;
 use Livewire\WithPagination;
 
 class DesktopLaptopPMHistory extends Component
@@ -44,7 +44,7 @@ class DesktopLaptopPMHistory extends Component
         return view(
             'livewire.desktop-laptop-p-m-history',
             [
-                'desktop_laptops' => DesktopLaptopPMModel::where('equipment_id', $this->equipment_id)
+                'desktop_laptops' => DesktopLaptopPM::where('equipment_id', $this->equipment_id)
                     ->orderBy($this->orderBy, $this->orderDirection)
                     ->paginate($this->perPage, ['*'], "desktopLaptopPMHistory")
             ]

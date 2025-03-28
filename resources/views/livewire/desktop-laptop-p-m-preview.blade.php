@@ -6,31 +6,31 @@
     <div class="mb-2">
         <div class="flex w-full gap-2 text-xs">
             <p class="font-bold w-44">Equipment Type</p>
-            <p>: Desktop</p>
+            <p>: {{ $equipment->equipment_type->name }}</p>
         </div>
         <div class="flex w-full gap-2 text-xs">
             <p class="font-bold w-44">Brand</p>
-            <p>: Desktop</p>
+            <p>: {{ $equipment->brand }}</p>
         </div>
         <div class="flex w-full gap-2 text-xs">
             <p class="font-bold w-44">Model</p>
-            <p>: Desktop</p>
+            <p>: {{ $equipment->model }}</p>
         </div>
         <div class="flex w-full gap-2 text-xs">
             <p class="font-bold w-44">Acquired Date</p>
-            <p>: Desktop</p>
+            <p>: {{ $equipment->acquired_date ?? "Unknown" }}</p>
         </div>
         <div class="flex w-full gap-2 text-xs">
             <p class="font-bold w-44">Serial Number</p>
-            <p>: Desktop</p>
+            <p>: {{ $equipment->serial_number }}</p>
         </div>
         <div class="flex w-full gap-2 text-xs">
             <p class="font-bold w-44">MR No.</p>
-            <p>: Desktop</p>
+            <p>: {{ $equipment->mr_no }}</p>
         </div>
         <div class="flex w-full gap-2 text-xs">
             <p class="font-bold w-44">Person Accountable</p>
-            <p>: Desktop</p>
+            <p>: {{ $equipment->employee->lastname }}, {{ $equipment->employee->firstname }}</p>
         </div>
     </div>
 
@@ -63,10 +63,24 @@
                         <strong>60 seconds</strong> until the desktop shows up. Start the timer when the any
                         logo/text appeared on the screen, or when after pressing specific key to proceed)</span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->system_boot_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->system_boot_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->system_boot_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->system_boot_remarks_a }}
+                </td>
             </tr>
 
             <tr class="text-xs">
@@ -80,10 +94,24 @@
                         <strong>Startup Tab</strong>. To disable apps, click the selected app, then click the
                         <strong>Disable button</strong> on bottom-left corner.)</span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->system_boot_status_b === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->system_boot_status_b === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->system_boot_status_b === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->system_boot_remarks_b }}
+                </td>
             </tr>
 
             <!-- Network Settings -->
@@ -101,10 +129,24 @@
                         page 2 for list of VLAN per division/section)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->network_settings_remarks_a }}
+                </td>
             </tr>
 
             <tr class="text-xs">
@@ -119,10 +161,24 @@
                             Internet > Network Properties
                         </strong>)</span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_b === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_b === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_b === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->network_settings_remarks_b }}
+                </td>
             </tr>
 
             <tr class="text-xs">
@@ -134,10 +190,24 @@
                         “System
                         Protection for Windows” should be turned “On”.)</span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_c === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_c === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_c === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->network_settings_remarks_c }}
+                </td>
             </tr>
 
             <tr class="text-xs">
@@ -149,10 +219,24 @@
                         the
                         required format of “Section-Username”, ex. MISS-rjaluspo.)</span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_d === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_d === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->network_settings_status_d === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->network_settings_remarks_d }}
+                </td>
             </tr>
 
             <!-- Computer Hardware Settings -->
@@ -168,10 +252,24 @@
                         verify these settings.)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->computer_hardware_settings_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->computer_hardware_settings_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->computer_hardware_settings_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->computer_hardware_settings_remarks_a }}
+                </td>
             </tr>
 
             <!-- Antivirus -->
@@ -188,10 +286,24 @@
                         verify)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->antivirus_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->antivirus_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->antivirus_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->antivirus_remarks_a }}
+                </td>
             </tr>
 
             <!-- Proper Software loads -->
@@ -208,10 +320,24 @@
                         list of installed programs)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->proper_hardware_loads_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->proper_hardware_loads_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->proper_hardware_loads_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->proper_hardware_loads_remarks_a }}
+                </td>
             </tr>
 
 
@@ -227,10 +353,24 @@
                             administrator</strong>, type <strong>sfc /scannow</strong> and wait for result)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->operating_system_checkup_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->operating_system_checkup_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->operating_system_checkup_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->operating_system_checkup_remarks_a }}
+                </td>
             </tr>
 
             <!-- Disk Cleanup -->
@@ -245,10 +385,24 @@
                         </strong> as admin, type: <strong>chkdsk /i</strong> )
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->disk_checkup_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->disk_checkup_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->disk_checkup_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->disk_checkup_remarks_a }}
+                </td>
             </tr>
 
             <!-- Physical Cleaning -->
@@ -263,10 +417,24 @@
                         keyboard and mouse.)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->physical_cleaning_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->physical_cleaning_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->physical_cleaning_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->physical_cleaning_remarks_a }}
+                </td>
             </tr>
 
             <!-- Hardware Inspection -->
@@ -298,10 +466,24 @@
                         reliability.
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->hardware_inspection_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->hardware_inspection_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->hardware_inspection_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->hardware_inspection_remarks_a }}
+                </td>
             </tr>
 
             <!-- Password Security -->
@@ -314,10 +496,24 @@
                     <span class="text-[0.625rem]">(Check if the PC requires user login strong password.)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->password_security_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->password_security_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->password_security_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->password_security_remarks_a }}
+                </td>
             </tr>
 
             <!-- User Accounts -->
@@ -332,10 +528,24 @@
                         desktop notes contain exposed passwords)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->user_accounts_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->user_accounts_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->user_accounts_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->user_accounts_remarks_a }}
+                </td>
             </tr>
 
             <tr class="bg-black">
@@ -353,29 +563,46 @@
                         Desktop/Laptop)
                     </span>
                 </td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black text-center"></td>
-                <td class="py-1 px-2 border border-black"></td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->summary_status_a === "ok")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->summary_status_a === "repair")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black text-center">
+                    @if($equipment_pm->summary_status_a === "n/a")
+                        <span class="font-bold text-lg">&check;</span>
+                    @endif
+                </td>
+                <td class="py-1 px-2 border border-black">
+                    {{ $equipment_pm->summary_remarks_a }}
+                </td>
             </tr>
         </tbody>
     </table>
 
     <!-- additional data -->
     <div class="grid grid-cols-2 text-xs">
-        <p> <span class="font-bold">Date conducted:</span> 1/2/2025</p>
-        <div class="grid grid-cols-2 gap-y-4 gap-x-2">
+        <p> <span class="font-bold">Date conducted:</span> {{ $equipment_pm->created_at->format('F d, Y')}}</p>
+        <div class="grid grid-cols-2 gap-y-4 gap-x-1">
 
             <span class="font-bold text-right">End user verification:
             </span>
             <p class="text-left line-clamp-1">
+                {{ $equipment_pm->end_user_verification }}
             </p>
 
             <span class="font-bold text-right">Position:</span>
-            <p class="text-left"> Senior Research Analyst 2</p>
+            <p class="text-left">{{ $equipment_pm->position }}</p>
 
             <span class="font-bold text-right">Section and Division:</span>
-            <p class="text-left">1/2/2025</p>
+            <p class="text-left">
+                {{ $division_section->division->division_code }}/{{ $division_section->unit_code }}
+            </p>
         </div>
     </div>
 </div>

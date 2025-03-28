@@ -5,13 +5,17 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Unit;
 use App\Models\Log;
-use App\Models\DesktopLaptopPMModel;
+use App\Models\Equipment;
+use App\Models\DesktopLaptopPM as DesktopLaptopPMModel;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DesktopLaptopPM extends Component
 {
 
     public $equipment_id;
+
+    public $equipment;
 
     // 1. System Boot
     public $system_boot_status_a;
@@ -70,17 +74,7 @@ class DesktopLaptopPM extends Component
     public $summary_remarks_a;
 
     // additional
-
-    public $date_conducted;
     public $position;
-
-    // 
-
-    public $division_section = '';
-    public $unit_id = '';
-
-    public $division_sections = [];
-
     // 
 
     protected $rules = [
@@ -125,7 +119,6 @@ class DesktopLaptopPM extends Component
         'summary_status_a' => 'required',
         // 
         // 'date_conducted' => 'required',
-        'unit_id' => 'required',
         'position' => 'required',
     ];
 
@@ -150,36 +143,19 @@ class DesktopLaptopPM extends Component
         'date_conducted.required' => '*This field is required.',
         'unit_id.required' => '*This field is required.',
         'position.required' => '*This field is required.',
+        'end_user_verification.max' => '*End user verification too long.',
     ];
-
-    public function fetchDivisionSections()
-    {
-        $this->division_sections = Unit::leftJoin("infosys.division", "infosys.division.division_id", "=", "unit_div")
-            ->selectRaw("*, CONCAT(IFNULL(infosys.division.division_code, 'No Division'), ' - ',infosys.unit.unit_desc) as division_section")
-            ->whereRaw("CONCAT(IFNULL(infosys.division.division_code, 'No Division'), ' - ', infosys.unit.unit_desc) LIKE ?", [$this->division_section . '%'])
-            ->get();
-    }
-
-    public function setSelectedDivisionSection($division_section)
-    {
-        $division = $division_section["division_code"] ? $division_section["division_code"] : "No Division";
-        $this->division_section = $division . ' - ' . $division_section["unit_desc"];
-        $this->unit_id = $division_section['unit_id'];
-        $this->resetErrorBag('unit_id');
-        $this->fetchDivisionSections();
-    }
-
-    public function updatedDivisionSection()
-    {
-
-        $this->fetchDivisionSections();
-        $this->unit_id = '';
-    }
 
     public function submitPM()
     {
         try {
             $this->validate();
+
+            $firstname = $this->equipment->employee->firstname;
+            $middlename = $this->equipment->employee->middlename ? $this->equipment->employee->middlename[0] . '.' : '';
+            $lastname = $this->equipment->employee->lastname;
+
+            $full_name = $firstname . ' ' . $middlename . ' ' . $lastname;
 
             $newPmHistory = DesktopLaptopPMModel::create([
                 // System Boot
@@ -239,9 +215,9 @@ class DesktopLaptopPM extends Component
                 'summary_remarks_a' => $this->summary_remarks_a,
 
                 // Additional Information
-                'date_conducted' => $this->date_conducted,
                 'position' => $this->position,
-                'unit_id' => $this->unit_id,
+                'end_user_verification' => $full_name,
+                'unit_id' => $this->equipment->person_accountable_current_unit_id,
                 'equipment_id' => $this->equipment_id,
             ]);
 
@@ -258,7 +234,6 @@ class DesktopLaptopPM extends Component
             }
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            $this->fetchDivisionSections();
             $this->setErrorBag($e->validator->getMessageBag());
         }
     }
@@ -266,6 +241,13 @@ class DesktopLaptopPM extends Component
     public function mount($equipment_id)
     {
         $this->equipment_id = $equipment_id;
+        $this->equipment = Equipment::select('equipments.*')
+            ->join('equipment_types', 'equipment_types.equipment_type_id', '=', 'equipments.equipment_type_id')
+            ->join('infosys.employee', 'infosys.employee.employee_id', '=', 'equipments.person_accountable_id')
+            ->join('infosys.unit', 'infosys.unit.unit_id', '=', 'equipments.person_accountable_current_unit_id')
+            ->join('infosys.division', 'infosys.division.division_id', '=', 'infosys.unit.unit_div')
+            ->where("equipments.equipment_id", '=', $equipment_id)
+            ->first();
     }
 
     public function render()

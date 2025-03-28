@@ -2,7 +2,7 @@
     <livewire:sidebar />
     <div class="grow flex flex-col">
         <livewire:header />
-        <div class="m-6 bg-base-100 grow border-2 border-neutral/25 rounded-md p-4 shadow-md overflow-hidden">
+        <div class="m-6 grow overflow-hidden">
             <!-- equipments tab -->
             <section class="h-full" x-cloak x-show="activeTab == 'equipments'">
                 <div x-data="{activeTab: 'equipments'}" class="h-full">

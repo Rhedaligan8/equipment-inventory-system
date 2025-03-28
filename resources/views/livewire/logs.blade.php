@@ -4,7 +4,7 @@
         <div class="mb-4 flex justify-between">
             <div class="flex gap-1 items-center">
                 <select wire:model.debounce.500ms="perPage"
-                    class="select select-sm w-20 focus:ring-0 focus:outline-none shrink-0">
+                    class="select w-20 focus:ring-0 focus:outline-none shrink-0">
                     <option value={{ 10 }}>10</option>
                     <option value={{ 20 }}>20</option>
                     <option value={{ 30 }}>30</option>
@@ -12,13 +12,13 @@
                     <option value={{ 50 }}>50</option>
                 </select>
                 <input wire:model.debounce.500ms="username" type="search" placeholder="Search username"
-                    class="input focus:ring-0 focus:outline-none input-sm shrink-0 max-w-60 w-60" />
+                    class="input focus:ring-0 focus:outline-none shrink-0 max-w-60 w-60" />
                 <div wire:loading class="ml-2"><span class="loading loading-spinner loading-sm"></span>
                 </div>
             </div>
             <div class="flex gap-2 items-center">
                 <div class="dropdown dropdown-end">
-                    <div tabindex="0" role="button" @class(['btn m-1 btn-sm font-bold', 'bg-primary' => $roleFilter !== '' || $typeFilter !== '',])>
+                    <div tabindex="0" role="button" @class(['btn m-1 btn-sm font-bold border border-black/50', 'bg-primary' => $roleFilter !== '' || $typeFilter !== '',])>
                         <i class="bi bi-funnel-fill" style="font-size: 1rem;"></i>
                         FILTERS
                     </div>
@@ -101,10 +101,10 @@
                     </tbody>
                 @endif
             </table>
+                        @if(!$logs->total())
+                            <h1 class="font-inter font-bold text-center my-4 text-xl">NO DATA</h1>
+                        @endif
             </div>
-            @if(!$logs->total())
-                <h1 class="font-inter font-bold text-center my-4 text-xl">NO DATA</h1>
-            @endif
         </div>
         <!-- table footer -->
         @if($logs->total())

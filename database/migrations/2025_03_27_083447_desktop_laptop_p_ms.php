@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('equipment_id');
             $table->unsignedBigInteger('unit_id');
             $table->string('position');
+            $table->string('end_user_verification')->nullable();
             $table->string('system_boot_status_a');
             $table->text('system_boot_remarks_a')->nullable();
             $table->string('system_boot_status_b');
